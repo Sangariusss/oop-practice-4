@@ -1,14 +1,14 @@
 package com.sangarius.opp.practice4.service;
 
 import com.sangarius.opp.practice4.entity.Account;
-import com.sangarius.opp.practice4.entity.BankCard;
+import com.sangarius.opp.practice4.entity.Account.BankCard;
 import com.sangarius.opp.practice4.entity.Product;
 import com.sangarius.opp.practice4.entity.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
-    private final List<BankCard> bankCards;
+    private final List<Account.BankCard> bankCards;
     private final List<Product> productList;
     private final List<Transaction> transactionList;
 
@@ -30,8 +30,8 @@ public class Bank {
         productList.add(new Product("Товар 10", 80.0, "USD"));
     }
 
-    public BankCard getBankCardByNumber(String cardNumber) {
-        for (BankCard bankCard : bankCards) {
+    public Account.BankCard getBankCardByNumber(String cardNumber) {
+        for (Account.BankCard bankCard : bankCards) {
             if (bankCard.getCardNumber().equals(cardNumber)) {
                 return bankCard;
             }

@@ -1,7 +1,8 @@
 package com.sangarius.opp.practice4.console;
 
 import com.sangarius.opp.practice4.entity.Account;
-import com.sangarius.opp.practice4.entity.BankCard;
+import com.sangarius.opp.practice4.entity.Account.BankCard;
+import com.sangarius.opp.practice4.entity.BankCard2;
 import com.sangarius.opp.practice4.entity.Person;
 import com.sangarius.opp.practice4.entity.Product;
 import com.sangarius.opp.practice4.entity.Transaction;
@@ -90,21 +91,21 @@ public class BankConsole {
 
     private void displayUserInfo(Person currentUser) {
         System.out.println("Ім'я користувача: " + currentUser.getName());
-        List<BankCard> userCards = currentUser.getBankCards();
+        List<BankCard2> userCards = currentUser.getBankCards();
 
         if (userCards.isEmpty()) {
             System.out.println("У вас немає банківських карток.");
         } else {
             System.out.println("Номери карток:");
 
-            for (BankCard card : userCards) {
+            for (BankCard2 card : userCards) {
                 System.out.println(card.getCardNumber());
             }
         }
     }
 
     private void addBankCardToCurrentUser() {
-        BankCard newCard = new BankCard(currentUser.getAccount(), currentUser);
+        BankCard2 newCard = new BankCard2(currentUser.getAccount(), currentUser);
         currentUser.addBankCard(newCard);
     }
 
@@ -163,7 +164,7 @@ public class BankConsole {
         System.out.print("Введіть номер банківської картки одержувача: ");
         String receiverCardNumber = scanner.nextLine();
 
-        BankCard receiverCard = bank.getBankCardByNumber(receiverCardNumber);
+        Account.BankCard receiverCard = bank.getBankCardByNumber(receiverCardNumber);
 
         if (receiverCard != null) {
             System.out.print("Введіть суму для переказу: ");
@@ -209,6 +210,7 @@ public class BankConsole {
 
             double totalAmount = selectedProduct.getPrice() * quantity;
             String currency = selectedProduct.getCurrency();
+            BankCard cardNumber = currentUser.getAccount().getBankCard();
 
             boolean result = currentUser.getAccount().withdraw(totalAmount);
 
@@ -216,7 +218,7 @@ public class BankConsole {
                 // Додавання транзакції
                 Transaction transaction = new Transaction(
                     currentUser,
-                    currentUser.getBankCards().get(0),  // Припускається, що користувач має хоча б одну картку
+                    cardNumber,
                     selectedProduct,
                     quantity,
                     totalAmount,

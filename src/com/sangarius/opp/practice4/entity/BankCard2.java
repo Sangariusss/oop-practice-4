@@ -2,11 +2,11 @@ package com.sangarius.opp.practice4.entity;
 
 import java.util.Random;
 
-public class BankCard {
+public class BankCard2 {
     private final Account account;
     private final String cardNumber;
 
-    public BankCard(Account account, Person owner) {
+    public BankCard2(Account account, Person owner) {
         this.account = account;
         this.cardNumber = generateCardNumber();
     }

@@ -8,7 +8,7 @@ public class Person {
     private final Account account;
     private final String password;
 
-    private final List<BankCard> bankCards;
+    private final List<BankCard2> bankCards;
 
     public Person(String name, String password, Account account) {
         this.name = name;
@@ -25,11 +25,11 @@ public class Person {
         return account;
     }
 
-    public List<BankCard> getBankCards() {
+    public List<BankCard2> getBankCards() {
         return bankCards;
     }
 
-    public void addBankCard(BankCard bankCard) {
+    public void addBankCard(BankCard2 bankCard) {
         bankCards.add(bankCard);
     }
 

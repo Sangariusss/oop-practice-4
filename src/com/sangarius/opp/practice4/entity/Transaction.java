@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Transaction {
     private final Person person;
-    private final BankCard bankCard;
+    private final Account.BankCard bankCard;
     private final Product product;
     private final int quantity;
     private final double amount;
@@ -13,7 +13,7 @@ public class Transaction {
     private final Date timestamp;
     private final double remainingBalance;
 
-    public Transaction(Person person, BankCard bankCard, Product product, int quantity, double amount, String currency, double remainingBalance) {
+    public Transaction(Person person, Account.BankCard bankCard, Product product, int quantity, double amount, String currency, double remainingBalance) {
         this.person = person;
         this.bankCard = bankCard;
         this.product = product;
@@ -26,7 +26,7 @@ public class Transaction {
 
     public String getTransactionInfo() {
         String result = "";
-        result += "Transaction by " + person.getName() + " using card " + bankCard.getCardNumber() + "\n"; // Fix variable name
+        result += "Transaction by " + person.getName() + " using card " + bankCard + "\n"; // Fix variable name
         result += "Product: " + product.getName() + "\n";
         result += "Quantity: " + quantity + "\n";
         result += "Total Amount: " + amount + " " + currency + "\n"; // Use amount and currency variables
